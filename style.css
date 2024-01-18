@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+#game {
+    display: inline-block;
+    margin: 20px;
+}
+
+#scores {
+    font-size: 24px;
+}
+
+#current {
+    font-size: 24px;
+}
+
+.player-panel {
+    display: inline-block;
+    margin: 20px;
+}
+
+.active {
+    background-color: #7442fd;
+}
+
+.winner {
+    background-color: gold;
+}
+
+.btn {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#roll, #hold, #suck {
+    display: inline-block;
+}
+                    

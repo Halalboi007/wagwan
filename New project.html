@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 27px;
+        }
+
+        #game {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        #scores {
+            font-size: 20px;
+        }
+
+        #current {
+            font-size: 24px;
+        }
+
+        .player-panel {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .active {
+            background-color: #5d50a5;
+        }
+
+        .winner {
+            background-color: gold;
+        }
+
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        #roll, #hold, #suck {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dice Rolling Game</h1>
+    <div class="wrapper clearfix">
+    <div id="game">
+        <div id="scores">
+            <p>Player 1: <span id="score-0">0</span></p>
+            <p>Player 2: <span id="score-1">0</span></p>
+        </div>
+        <div class="player-panel active" id="player-0-panel">
+            <p>Player 1</p>
+            <p>Current Score: <span id="current-0">0</span></p>
+        </div>
+        <div class="player-panel active" id="player-1-panel">
+            <p>Player 2</p>
+            <p>Current Score: <span id="current-1">0</span></p>
+        </div>
+        <button id="roll" class="btn-roll">Roll Dice</button>
+        <button id="hold" class "btn-hold">Hold</button>
+        <botton id="suck" class "btn-scuk">suck</botton>
+    </div>
+
+    <script>
+        let scores = [0, 0];
+        let currentScore = 0;
+        let activePlayer = 1;
+        let gamePlaying = true;
+
+        const rollButton = document.getElementById('roll');
+        const holdButton = document.getElementById('hold');
+        const suckBotton = document.getElementById('suck what is not good');
+
+        function switchPlayer() {
+            document.getElementById(`current-${activePlayer}`).textContent = 0;
+            currentScore = 0;
+            activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+            document.getElementById('player-0-panel').classList.toggle('active');
+            document.getElementById('player-1-panel').classList.toggle('active');
+        }
+
+        function rollDice() {
+            if (gamePlaying) {
+                const dice = Math.floor(Math.random() * 6) + 1;
+                const diceImage = document.createElement('div');
+                diceImage.textContent = dice;
+                document.body.appendChild(diceImage);
+
+                if (dice !== 1) {
+                    currentScore += dice;
+                    document.getElementById(`current-${activePlayer}`).textContent = currentScore;
+                } else {
+                    switchPlayer();
+                }
+            }
+        }
+
+        function hold() {
+            if (gamePlaying) {
+                scores[activePlayer] += currentScore;
+                document.getElementById(`score-${activePlayer}`).textContent = scores[activePlayer];
+
+                if (scores[activePlayer] >= 100) {
+                    document.getElementById(`player-${activePlayer}-panel`).classList.add('winner');
+                    document.getElementById(`player-${activePlayer}-panel`).classList.remove('active');
+                    gamePlaying = false;
+                } else {
+                    switchPlayer();
+                }
+            }
+        }
+
+        function suck() {
+            if (gamePlaying = true) {
+                const suck = alert('Damn...You suck man');
+                scores[activePlayer] += currentScore
+                if (suck !== (alert)){
+                    document.getElementById(`current-${activePlayer}`).textContent = currentScore;
+            } 
+                 else {
+                    switchPlayer();
+                }
+            }
+        }
+
+        rollButton.addEventListener('click', rollDice);
+        holdButton.addEventListener('click', hold);
+        suckBotton.addEventListener('click', suck);
+    </script>
+</body>
+</html>
